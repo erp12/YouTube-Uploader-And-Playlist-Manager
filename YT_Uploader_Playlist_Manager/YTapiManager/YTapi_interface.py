@@ -6,6 +6,7 @@ Created on May 8, 2014
 import YT_Uploader_Playlist_Manager.YTapiManager.httplib2 as httplib2
 import os
 import sys
+import shutil
 
 from apiclient.discovery import build
 from oauth2client.client import flow_from_clientsecrets
@@ -51,6 +52,9 @@ def yt_auth(is_new_login):
 
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION,
                     http=credentials.authorize(httplib2.Http()))
+    
+    shutil.copy(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'\YTapiManager\client_secrets.json', os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'\YTUGUI')
+    
     return youtube
 
 def create_new_playlists(youtube):
@@ -79,7 +83,7 @@ def list_my_playlists(youtube):
         while playlists_list_request:
             playlist_list_response = playlists_list_request.execute()
             for playlist in playlist_list_response['items']:
-                print playlist['snippet']['title']
+                #print playlist['snippet']['title']
                 list_of_playlists.append(playlist['snippet']['title'])
         
             playlists_list_request = youtube.playlistItems().list_next(playlists_list_request,
@@ -117,6 +121,6 @@ def NOlist_my_playlists(youtube):
 '''
 
 
-yt = yt_auth(False)
-list_my_playlists(yt)
+#yt = yt_auth(True)
+#list_my_playlists(yt)
 #create_new_playlists(yt)
