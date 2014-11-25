@@ -8,7 +8,7 @@ The YouTube Uploader and Playlist Manager (working title) is a client to help Yo
 * Users can view playlists already on their channel.
 * Users can add videos to playlists.
 * Users can create config files holding the meta data that will be applied to every video in the playlist.
-  * Title
+  * Title Pattern
       *  [Filename :: Episode Number :: Series] becomes [Exploding Egg Rolls :: 4 :: Cooking with Criminals]
   * Description
   * tags
